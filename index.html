@@ -93,21 +93,24 @@
 <body>
     <div id="converter">
         <h1>Temperature Converter</h1>
-        <div class="input-group">
-            <label for="celsius">Celsius:</label>
-            <input type="text" id="celsius">
-        </div>
-        <div class="input-group">
-            <label for="fahrenheit">Fahrenheit:</label>
-            <input type="text" id="fahrenheit">
-        </div>
-        <button id="convert">Convert</button>
+        <form onsubmit="convertTemperature(event)">
+            <div class="input-group">
+                <label for="celsius">Celsius:</label>
+                <input type="text" id="celsius">
+            </div>
+            <div class="input-group">
+                <label for="fahrenheit">Fahrenheit:</label>
+                <input type="text" id="fahrenheit">
+            </div>
+            <button type="submit">Convert</button>
+        </form>
         <div id="result"></div>
         <div id="animated">&#9733;</div>
     </div>
 
     <script>
-        document.getElementById("convert").addEventListener("click", function () {
+        function convertTemperature(event) {
+            event.preventDefault();
             const celsius = parseFloat(document.getElementById("celsius").value);
             if (!isNaN(celsius)) {
                 const fahrenheit = (celsius * 9/5) + 32;
@@ -116,7 +119,7 @@
             } else {
                 document.getElementById("result").textContent = "Please enter a valid Celsius temperature.";
             }
-        });
+        }
     </script>
 </body>
 </html>
